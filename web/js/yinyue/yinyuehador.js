@@ -1,0 +1,1 @@
+_SPLITTEST='thing.thing_page_order,movie.has_video,sns.is_recommended_user,movie.new-cinema-section,movie.category-vs-tag,ilmen.story_sims_scrollload'

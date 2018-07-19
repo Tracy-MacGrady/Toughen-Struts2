@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="toughen" extends="json-default">
+        <global-results>
+            <result type="json" name="success"/>
+            <result type="json" name="error"/>
+        </global-results>
+        <action name="loginAction" class="action.userinfo.UserLoginAction"/>
+        <action name="updateAction" class="action.userinfo.UserUpdateAction"/>
+        <action name="registerAction" class="action.userinfo.UserRegisterAction"/>
+    </package>
+</struts>

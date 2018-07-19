@@ -1,0 +1,38 @@
+body{_height:100%}
+.dui-overlay-mask,.dui-overlay-iframe,.dui-overlay-container{position:fixed;top:0;left:0;height:100%;width:100%;_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop))}
+.dui-overlay-container{z-index:999;overflow:auto;-webkit-overflow-scrolling:touch}
+.dui-overlay-mask{z-index:998;background:#000;opacity:.8;filter:alpha(opacity=80)}
+.dui-overlay-panel{position:relative;overflow:hidden;background:#fff;margin:50px auto;-webkit-box-shadow:2px 2px 5px rgba(0,0,0,0.2);box-shadow:2px 2px 5px rgba(0,0,0,0.2)}
+.dui-overlay-panel .hd{padding:10px 15px}
+.dui-overlay-panel .hd h2{margin:0}
+.dui-overlay-panel .bd{padding:0 15px 20px}
+.dui-overlay-panel .lnk-close{position:absolute;top:10px;right:15px}
+.dui-overlay-panel a.lnk-close:link,.dui-overlay-panel a.lnk-close:active,.dui-overlay-panel a.lnk-close:hover,.dui-overlay-panel a.lnk-close:active{font-size:16px;line-height:1}
+.dui-overlay-panel .hd{position:relative;background-color:#834e4e;color:#fff;padding:10px 25px 10px 20px;font-size:14px;line-height:20px}
+.dui-overlay-panel .hd a,.dui-overlay-panel .hd h2{color:#fff}
+.dui-overlay-panel .hd .lnk-close:link,.dui-overlay-panel .hd .lnk-close:active,.dui-overlay-panel .hd .lnk-close:hover,.dui-overlay-panel .hd .lnk-close:active{line-height:20px}
+.dui-overlay-panel .hd .lnk-close:hover{background-color:transparent}
+.dui-overlay-panel .bd{padding:20px}
+.dialog-confirm .bd{padding:0}
+.dialog-alert .bd{padding:20px}
+.dui-overlay-panel .dialog-content-bd{vertical-align:middle;padding:20px}
+.dui-overlay-panel .dialog-content-ft{padding:10px 20px;line-height:1;background-color:#e4e4de}
+.dialog-confirm{background-color:#fffff9;font-size:12px}
+.dialog-confirm .bd .secondary{margin-top:5px;color:#666}
+.dialog-confirm .confirming-actions{margin-top:20px;text-align:right}
+.browsers-list{padding:20px 0 40px}
+.browsers-list .browsers-item{display:inline-block;*display:inline;*zoom:1;vertical-align:top;}
+.browsers-list .browsers-item a{background:url("1_browsers.png?v=9492918006") no-repeat;width:80px;margin-right:40px;display:inline-block;*display:inline;*zoom:1;padding-top:80px;text-align:center;}
+.browsers-list .browsers-item a.browser-360ee{background-position:center 2px}
+.browsers-list .browsers-item a.browser-maxthon{background-position:center -120px}
+.browsers-list .browsers-item a.browser-qq{background-position:center -240px}
+.browsers-list .browsers-item a.browser-sogou{background-position:center -360px}
+.browsers-list .browsers-item a.browser-firefox{background-position:center -602px}
+.browsers-list .browsers-item a.browser-ie8,.browsers-list .browsers-item a.browser-ie9{background-position:center -722px}
+.browsers-list .browsers-item a.browser-safari{background-position:center -847px}
+.browsers-list .browsers-item a.browser-chrome{background-position:center -480px}
+.browsers-list .browsers-item a:hover{font-weight:bold;color:#825d5b}
+.browser-tips blockquote{padding:10px 0;font-size:14px;}
+.browser-tips blockquote strong{font-weight:bold;padding:0 5px;color:#825d5b}
+.anti-old-ie-bd .browsers-list{padding:20px 40px}
+.anti-old-ie-bd blockquote strong{color:#825d5b;font-weight:bold;padding:0 5px}
