@@ -2,9 +2,13 @@ package action.userinfo;
 
 import action.BaseAction;
 import com.mysql.jdbc.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import orm.entity.UserinfoEntity;
 import response.UserLoginResponseEntity;
 import service.AllDaoService;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by Administrator on 2017/8/1 0001.
@@ -41,6 +45,9 @@ public class UserLoginAction extends BaseAction {
         UserinfoEntity userinfo = service.getUserinfoDaoService().findByUserPhone(userphone);
         if (userinfo != null) {
             if (userinfo.getPassword().equals(password)) {
+                HttpServletResponse response = ServletActionContext.getResponse();
+                Cookie cookie = new Cookie("asd", "ffffffffffffffffff");
+                response.addCookie(cookie);
                 setCode(1000);
                 setData(new UserLoginResponseEntity(userinfo));
                 return SUCCESS;

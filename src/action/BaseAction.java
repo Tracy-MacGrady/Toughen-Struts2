@@ -25,4 +25,5 @@ public class BaseAction extends ActionSupport {
     public void setData(Object data) {
         this.data = data;
     }
+
 }
