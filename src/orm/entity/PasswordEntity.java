@@ -11,6 +11,7 @@ public class PasswordEntity {
     private int id;
     private String value;
     private String desc;
+    private String title;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -23,7 +24,7 @@ public class PasswordEntity {
     }
 
     @Basic
-    @Column(name = "value", nullable = false, length = 255)
+    @Column(name = "passwordval", nullable = false, length = 255)
     public String getValue() {
         return value;
     }
@@ -33,7 +34,7 @@ public class PasswordEntity {
     }
 
     @Basic
-    @Column(name = "desc", nullable = true, length = 255)
+    @Column(name = "passworddesc", nullable = true, length = 255)
     public String getDesc() {
         return desc;
     }
@@ -62,5 +63,15 @@ public class PasswordEntity {
         result = 31 * result + (value != null ? value.hashCode() : 0);
         result = 31 * result + (desc != null ? desc.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "title", nullable = false, length = 255)
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
