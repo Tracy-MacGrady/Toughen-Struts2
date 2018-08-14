@@ -5,15 +5,15 @@ package service;
  */
 public class AllDaoService {
     private UserinfoDaoService userinfoDaoService;
-    private PasswordDaoService passwordDaoService;
+    private AccountDaoService accountDaoService;
 
     public UserinfoDaoService getUserinfoDaoService() {
         if (userinfoDaoService == null) userinfoDaoService = new UserinfoDaoService();
         return userinfoDaoService;
     }
 
-    public PasswordDaoService getPasswordDaoService() {
-        if (passwordDaoService == null) passwordDaoService = new PasswordDaoService();
-        return passwordDaoService;
+    public AccountDaoService getAccountDaoService() {
+        if (accountDaoService == null) accountDaoService = new AccountDaoService();
+        return accountDaoService;
     }
 }

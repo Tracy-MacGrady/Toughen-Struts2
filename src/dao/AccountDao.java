@@ -1,10 +1,10 @@
 package dao;
 
-import daointerface.PasswordDaoInterface;
+import daointerface.AccountDaoInterface;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import orm.entity.PasswordEntity;
+import orm.entity.AccountEntity;
 import utils.StringUtil;
 
 import java.util.ArrayList;
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2018/8/14 0014.
  */
-public class PasswordDao extends BaseDao implements PasswordDaoInterface {
+public class AccountDao extends BaseDao implements AccountDaoInterface {
     @Override
-    public PasswordEntity savePassword(PasswordEntity entity) {
+    public AccountEntity saveAccount(AccountEntity entity) {
         Session session = getSession();
         if (session == null || !session.isOpen()) return null;
         Transaction transaction = session.beginTransaction();
@@ -26,42 +26,41 @@ public class PasswordDao extends BaseDao implements PasswordDaoInterface {
             transaction.rollback();
         } finally {
             if (session != null) session.close();
-            entity.setId(selectIdByTitleAndValue(entity.getTitle(), entity.getValue()));
+            entity.setId(selectIdByNumber(entity.getAccountnumber()));
         }
         return entity.getId() == -1 ? null : entity;
     }
 
     @Override
-    public boolean deletePassword(PasswordEntity entity) {
+    public boolean deleteAccount(AccountEntity entity) {
         return false;
     }
 
     @Override
-    public PasswordEntity updatePassword(PasswordEntity entity) {
+    public AccountEntity updateAccount(AccountEntity entity) {
         return null;
     }
 
     @Override
-    public ArrayList<PasswordEntity> selectAllPassword() {
+    public ArrayList<AccountEntity> selectAllAccount() {
         return null;
     }
 
     @Override
-    public PasswordEntity selectPasswordByTitle(String title) {
+    public AccountEntity selectAccountByNumber(String title) {
         return null;
     }
 
-    public int selectIdByTitleAndValue(String myTitle, String myValue) {
+    public int selectIdByNumber(String number) {
         int id = -1;
-        if (!StringUtil.isEmpty(myTitle) && !StringUtil.isEmpty(myValue)) {
+        if (!StringUtil.isEmpty(number)) {
             Session session = getSession();
             if (session != null && session.isOpen()) {
                 Transaction transaction = session.beginTransaction();
                 try {
-                    String selectIdSQL = "select id from PasswordEntity as p where p.title=:myTitle and p.value=:myValue";
+                    String selectIdSQL = "select id from AccountEntity as a where a.accountnumber=:myNumber";
                     Query<Integer> query = session.createQuery(selectIdSQL);
-                    query.setParameter("myTitle", myTitle);
-                    query.setParameter("myValue", myValue);
+                    query.setParameter("myNumber", number);
                     id = query.uniqueResult();
                     transaction.commit();
                 } catch (Exception e) {

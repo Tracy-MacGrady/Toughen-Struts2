@@ -1,7 +1,7 @@
 package action.savapassword;
 
 import action.BaseAction;
-import orm.entity.PasswordEntity;
+import orm.entity.AccountEntity;
 import service.AllDaoService;
 
 /**
@@ -37,18 +37,18 @@ public class SavePasswordAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         AllDaoService allDaoService = new AllDaoService();
-        PasswordEntity entity = new PasswordEntity();
+        AccountEntity entity = new AccountEntity();
         entity.setTitle(title);
-        entity.setValue(value);
-        entity.setDesc(desc);
-        PasswordEntity passwordEntity = allDaoService.getPasswordDaoService().savePassword(entity);
-        if (passwordEntity == null || passwordEntity.getId() == -1) {
+        entity.setAccountnumber(value);
+        entity.setAccountdesc(desc);
+        AccountEntity accountEntity = allDaoService.getAccountDaoService().saveAccount(entity);
+        if (accountEntity == null || accountEntity.getId() == -1) {
             setCode(10001);
             setData("保存失败！");
             return ERROR;
         }
         setCode(10000);
-        setData(passwordEntity);
+        setData(accountEntity);
         return SUCCESS;
     }
 }

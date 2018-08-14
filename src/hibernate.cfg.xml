@@ -7,15 +7,13 @@
         <!--<property name="connection.url">jdbc:mysql://bdm260467268.my3w.com:3306/bdm260467268_db</property>-->
         <property name="connection.url">jdbc:mysql://localhost:3306/toughen</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.username">lisi</property>
-        <property name="connection.password">123.asd</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <mapping class="orm.entity.UserinfoEntity"/>
-        <mapping class="orm.entity.PasswordEntity"/>
+        <mapping class="orm.entity.AccountEntity"/>
         <mapping resource="orm/Entity.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
