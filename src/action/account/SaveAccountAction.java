@@ -2,27 +2,24 @@ package action.account;
 
 import action.ActionConstant;
 import action.BaseAction;
+import org.apache.struts2.ServletActionContext;
 import orm.entity.AccountEntity;
 import service.AllDaoService;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2018/8/13 0013.
  */
 public class SaveAccountAction extends BaseAction {
     private String title;
-    private String value;
-    private String desc;
+    private String accountNumber;
+    private String accountPassword;
+    private String accountDesc;
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     @Override
@@ -37,11 +34,20 @@ public class SaveAccountAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
+        HttpServletRequest request = ServletActionContext.getRequest();
+        Cookie cookie = request.getCookies()[0];
+        if (!cookie.getName().equalsIgnoreCase("userid")) {
+            setCode(ActionConstant.CODE_ERROR);
+            setData("您还没有登录！");
+            return ERROR;
+        }
         AllDaoService allDaoService = new AllDaoService();
         AccountEntity entity = new AccountEntity();
         entity.setTitle(title);
-        entity.setAccountnumber(value);
-        entity.setAccountdesc(desc);
+        entity.setAccountnumber(accountNumber);
+        entity.setAccountpassword(accountPassword);
+        entity.setAccountdesc(accountDesc);
+        entity.setUserid(Integer.parseInt(cookie.getValue()));
         AccountEntity accountEntity = allDaoService.getAccountDaoService().saveAccount(entity);
         if (accountEntity == null || accountEntity.getId() == -1) {
             setCode(ActionConstant.CODE_ERROR);
