@@ -13,6 +13,6 @@
         <action name="loginAction" class="action.userinfo.UserLoginAction"/>
         <action name="updateAction" class="action.userinfo.UserUpdateAction"/>
         <action name="registerAction" class="action.userinfo.UserRegisterAction"/>
-        <action name="savePasswordAction" class="action.savapassword.SavePasswordAction"/>
+        <action name="saveAccountAction" class="action.account.SaveAccountAction"/>
     </package>
 </struts>

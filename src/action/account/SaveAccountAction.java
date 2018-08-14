@@ -1,4 +1,4 @@
-package action.savapassword;
+package action.account;
 
 import action.BaseAction;
 import orm.entity.AccountEntity;
@@ -7,7 +7,7 @@ import service.AllDaoService;
 /**
  * Created by Administrator on 2018/8/13 0013.
  */
-public class SavePasswordAction extends BaseAction {
+public class SaveAccountAction extends BaseAction {
     private String title;
     private String value;
     private String desc;
