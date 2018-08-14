@@ -32,14 +32,16 @@
             <column name="title" sql-type="varchar(255)"/>
         </property>
         <property name="accountnumber">
-            <column name="accountnumber" sql-type="varchar(255)" not-null="true"/>
+            <column name="accountnumber" sql-type="varchar(255)"/>
         </property>
         <property name="accountpassword">
-            <column name="accountpassword" sql-type="varchar(255)" not-null="true"/>
+            <column name="accountpassword" sql-type="varchar(255)"/>
         </property>
         <property name="accountdesc">
             <column name="accountdesc" sql-type="varchar(255)" not-null="true"/>
         </property>
+        <property name="userid">
+            <column name="userid" sql-type="int(11)"/>
+        </property>
     </class>
-
 </hibernate-mapping>

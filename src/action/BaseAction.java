@@ -6,7 +6,6 @@ import com.opensymphony.xwork2.ActionSupport;
  * Created by Administrator on 2017/8/1 0001.
  */
 public class BaseAction extends ActionSupport {
-    public static final String SUCCESS = "success", ERROR = "error";
     private int code;
     private Object data;
 

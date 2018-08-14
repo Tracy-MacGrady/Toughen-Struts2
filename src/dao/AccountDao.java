@@ -7,7 +7,7 @@ import org.hibernate.query.Query;
 import orm.entity.AccountEntity;
 import utils.StringUtil;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Administrator on 2018/8/14 0014.
@@ -42,8 +42,27 @@ public class AccountDao extends BaseDao implements AccountDaoInterface {
     }
 
     @Override
-    public ArrayList<AccountEntity> selectAllAccount() {
-        return null;
+    public List<AccountEntity> selectAllAccount(String userid) {
+        List<AccountEntity> list = null;
+        if (!StringUtil.isEmpty(userid)) {
+            Session session = getSession();
+            if (session != null && session.isOpen()) {
+                Transaction transaction = session.beginTransaction();
+                try {
+                    String selectIdSQL = "from AccountEntity as a where a.userid=:myUserid";
+                    Query<AccountEntity> query = session.createQuery(selectIdSQL);
+                    query.setParameter("myUserid", userid);
+                    list = query.list();
+                    transaction.commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    transaction.rollback();
+                } finally {
+                    if (session != null) session.close();
+                }
+            }
+        }
+        return list;
     }
 
     @Override

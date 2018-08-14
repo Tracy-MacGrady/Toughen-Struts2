@@ -4,7 +4,7 @@ import dao.AccountDao;
 import daointerface.AccountDaoInterface;
 import orm.entity.AccountEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/8/14 0014.
@@ -28,8 +28,8 @@ public class AccountDaoService {
         return dao.updateAccount(entity);
     }
 
-    public ArrayList<AccountEntity> selectAllAccount() {
-        return dao.selectAllAccount();
+    public List<AccountEntity> selectAllAccount(String userid) {
+        return dao.selectAllAccount(userid);
     }
 
     public AccountEntity selectAccountByNumber(String number) {

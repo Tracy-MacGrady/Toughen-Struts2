@@ -1,5 +1,6 @@
 package action.userinfo;
 
+import action.ActionConstant;
 import action.BaseAction;
 import com.mysql.jdbc.StringUtils;
 import orm.entity.UserinfoEntity;
@@ -37,28 +38,28 @@ public class UserRegisterAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         if (StringUtils.isNullOrEmpty(userphone)) {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("请填写您的手机号！");
             return ERROR;
         }
         if (StringUtils.isNullOrEmpty(password)) {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("请填写您的密码！");
             return ERROR;
         }
         if (StringUtils.isNullOrEmpty(vcode)) {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("请填写您的验证码！");
             return ERROR;
         }
         if (!vcode.equals("111111")) {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("您输入的验证码错误！");
             return ERROR;
         }
         AllDaoService service = new AllDaoService();
         UserinfoEntity entity = service.getUserinfoDaoService().insertUserinfo(userphone, password);
-        setCode(1000);
+        setCode(ActionConstant.CODE_SUCCESS);
         setData(new UserLoginResponseEntity(entity));
         return SUCCESS;
     }

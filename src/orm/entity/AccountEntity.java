@@ -13,6 +13,7 @@ public class AccountEntity {
     private String accountnumber;
     private String accountpassword;
     private String accountdesc;
+    private int userid;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -64,6 +65,16 @@ public class AccountEntity {
         this.accountdesc = accountdesc;
     }
 
+    @Basic
+    @Column(name = "userid", nullable = false)
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,6 +83,7 @@ public class AccountEntity {
         AccountEntity that = (AccountEntity) o;
 
         if (id != that.id) return false;
+        if (userid != that.userid) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (accountnumber != null ? !accountnumber.equals(that.accountnumber) : that.accountnumber != null)
             return false;
@@ -89,6 +101,7 @@ public class AccountEntity {
         result = 31 * result + (accountnumber != null ? accountnumber.hashCode() : 0);
         result = 31 * result + (accountpassword != null ? accountpassword.hashCode() : 0);
         result = 31 * result + (accountdesc != null ? accountdesc.hashCode() : 0);
+        result = 31 * result + userid;
         return result;
     }
 }

@@ -1,5 +1,6 @@
 package action.userinfo;
 
+import action.ActionConstant;
 import action.BaseAction;
 import org.apache.struts2.ServletActionContext;
 import orm.entity.UserinfoEntity;
@@ -47,7 +48,6 @@ public class UserUpdateAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        HttpServletRequest request = ServletActionContext.getRequest();
         UserinfoEntity entity = new UserinfoEntity();
         entity.setUsername(userName);
         entity.setPassword(userPassword);
@@ -56,8 +56,13 @@ public class UserUpdateAction extends BaseAction {
         entity.setId(id);
         AllDaoService daoService = new AllDaoService();
         UserinfoEntity entity2 = daoService.getUserinfoDaoService().updateUserinfo(entity);
-        setCode(1000);
-        setData(new UserLoginResponseEntity(entity2));
+        if (entity2 != null) {
+            setCode(ActionConstant.CODE_SUCCESS);
+            setData(new UserLoginResponseEntity(entity2));
+            return SUCCESS;
+        }
+        setCode(ActionConstant.CODE_ERROR);
+        setData("修改失败！");
         return ERROR;
     }
 }

@@ -1,5 +1,6 @@
 package action.userinfo;
 
+import action.ActionConstant;
 import action.BaseAction;
 import com.mysql.jdbc.StringUtils;
 import org.apache.struts2.ServletActionContext;
@@ -46,17 +47,17 @@ public class UserLoginAction extends BaseAction {
         if (userinfo != null) {
             if (userinfo.getPassword().equals(password)) {
                 HttpServletResponse response = ServletActionContext.getResponse();
-                Cookie cookie = new Cookie("asd", "ffffffffffffffffff");
+                Cookie cookie = new Cookie("userid", userinfo.getId() + "");
                 response.addCookie(cookie);
-                setCode(1000);
+                setCode(ActionConstant.CODE_SUCCESS);
                 setData(new UserLoginResponseEntity(userinfo));
                 return SUCCESS;
             } else {
-                setCode(1001);
+                setCode(ActionConstant.CODE_ERROR);
                 setData("您输入的密码错误！");
             }
         } else {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("您输入的用户信息无效！");
         }
         return ERROR;

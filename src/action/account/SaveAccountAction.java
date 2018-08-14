@@ -1,5 +1,6 @@
 package action.account;
 
+import action.ActionConstant;
 import action.BaseAction;
 import orm.entity.AccountEntity;
 import service.AllDaoService;
@@ -43,11 +44,11 @@ public class SaveAccountAction extends BaseAction {
         entity.setAccountdesc(desc);
         AccountEntity accountEntity = allDaoService.getAccountDaoService().saveAccount(entity);
         if (accountEntity == null || accountEntity.getId() == -1) {
-            setCode(10001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("保存失败！");
             return ERROR;
         }
-        setCode(10000);
+        setCode(ActionConstant.CODE_SUCCESS);
         setData(accountEntity);
         return SUCCESS;
     }
