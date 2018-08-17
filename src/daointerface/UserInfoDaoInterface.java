@@ -3,13 +3,13 @@ package daointerface;
 
 import orm.entity.UserinfoEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/31 0031.
  */
 public interface UserInfoDaoInterface {
-    ArrayList<UserinfoEntity> findAll();
+    List<UserinfoEntity> findAll();
 
     UserinfoEntity findById(int id);
 

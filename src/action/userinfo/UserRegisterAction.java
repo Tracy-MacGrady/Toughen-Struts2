@@ -58,6 +58,12 @@ public class UserRegisterAction extends BaseAction {
             return ERROR;
         }
         AllDaoService service = new AllDaoService();
+        UserinfoEntity findUser = service.getUserinfoDaoService().findByUserPhone(userphone);
+        if (findUser != null) {
+            setCode(ActionConstant.CODE_ERROR);
+            setData("您的账号已经注册了，请直接登录！");
+            return ERROR;
+        }
         UserinfoEntity entity = service.getUserinfoDaoService().insertUserinfo(userphone, password);
         setCode(ActionConstant.CODE_SUCCESS);
         setData(new UserLoginResponseEntity(entity));

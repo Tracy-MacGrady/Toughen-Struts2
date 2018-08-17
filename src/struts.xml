@@ -10,9 +10,12 @@
             <result type="json" name="success"/>
             <result type="json" name="error"/>
         </global-results>
+        <!--userinfo 相关-->
         <action name="loginAction" class="action.userinfo.UserLoginAction"/>
         <action name="updateAction" class="action.userinfo.UserUpdateAction"/>
         <action name="registerAction" class="action.userinfo.UserRegisterAction"/>
+        <!--account 相关-->
         <action name="saveAccountAction" class="action.account.SaveAccountAction"/>
+        <action name="getAccountAction" class="action.account.GetUserAllAccountAction"/>
     </package>
 </struts>

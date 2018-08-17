@@ -6,9 +6,10 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 import orm.entity.UserinfoEntity;
+import utils.MD5Utils;
 import utils.StringUtil;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/7/31 0031.
@@ -16,21 +17,22 @@ import java.util.ArrayList;
 public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
 
     @Override
-    public ArrayList<UserinfoEntity> findAll() {
-        ArrayList<UserinfoEntity> list = null;
+    public List<UserinfoEntity> findAll() {
+        List<UserinfoEntity> list = null;
         Session session = getSession();
         String hql = "from UserinfoEntity";
         if (session == null || !session.isOpen()) return list;
+        Transaction transaction=session.beginTransaction();
         try {
-            list = (ArrayList<UserinfoEntity>) session.createQuery(hql).list();
-            session.getTransaction().commit();
+            Query<UserinfoEntity> query=session.createQuery(hql);
+            list=query.list();
+            transaction.commit();
         } catch (Exception e) {
-            session.getTransaction().markRollbackOnly();
+            transaction.markRollbackOnly();
             e.printStackTrace();
         } finally {
             session.close();
         }
-
         return list;
     }
 
@@ -43,9 +45,9 @@ public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
         try {
             transaction = session.getTransaction();
             String hql = "from UserinfoEntity as u where u.id=:myid";
-            Query query = session.createQuery(hql);
+            Query<UserinfoEntity> query = session.createQuery(hql);
             query.setParameter("myid", id);
-            userinfoEntity = (UserinfoEntity) query.uniqueResult();
+            userinfoEntity =query.uniqueResult();
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
@@ -66,9 +68,9 @@ public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
             if (session != null && username != null) {
                 transaction = session.getTransaction();
                 String hql = "from UserinfoEntity as u where u.username=:myusername";
-                Query query = session.createQuery(hql);
+                Query<UserinfoEntity> query = session.createQuery(hql);
                 query.setParameter("myusername", username);
-                userinfoEntity = (UserinfoEntity) query.uniqueResult();
+                userinfoEntity = query.uniqueResult();
                 transaction.commit();
             }
         } catch (HibernateException e) {
@@ -90,9 +92,9 @@ public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
             if (userPhone != null) {
                 transaction = session.getTransaction();
                 String hql = "from UserinfoEntity as u where u.userphone=:myuserphone";
-                Query query = session.createQuery(hql);
+                Query<UserinfoEntity> query = session.createQuery(hql);
                 query.setParameter("myuserphone", userPhone);
-                userinfoEntity = (UserinfoEntity) query.uniqueResult();
+                userinfoEntity = query.uniqueResult();
                 transaction.commit();
             }
         } catch (HibernateException e) {
@@ -113,7 +115,7 @@ public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
         try {
             userinfoEntity.setUsername("未命名");
             userinfoEntity.setUserphone(userphone);
-            userinfoEntity.setPassword(password);
+            userinfoEntity.setPassword(MD5Utils.MD5Encode(password));
             session.save(userinfoEntity);
             transaction.commit();
         } catch (Exception e) {
@@ -129,7 +131,7 @@ public class UserInfoDao extends BaseDao implements UserInfoDaoInterface {
     public UserinfoEntity updateUserinfo(UserinfoEntity entity) {
         String value = "update UserinfoEntity as u set";
         if (!StringUtil.isEmpty(entity.getPassword()))
-            value += " u.password='" + entity.getPassword() + "',";
+            value += " u.password='" + MD5Utils.MD5Encode(entity.getPassword()) + "',";
         if (!StringUtil.isEmpty(entity.getUseraddress()))
             value += " u.useraddress='" + entity.getUseraddress() + "',";
         if (!StringUtil.isEmpty(entity.getUseremail()))

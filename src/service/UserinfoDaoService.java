@@ -4,7 +4,7 @@ import dao.UserInfoDao;
 import daointerface.UserInfoDaoInterface;
 import orm.entity.UserinfoEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/31 0031.
@@ -20,7 +20,7 @@ public class UserinfoDaoService {
         if (dao == null) dao = new UserInfoDao();
     }
 
-    public ArrayList<UserinfoEntity> findAll() {
+    public List<UserinfoEntity> findAll() {
         return dao.findAll();
     }
 

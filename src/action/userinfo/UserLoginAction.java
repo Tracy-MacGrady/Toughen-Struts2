@@ -7,6 +7,7 @@ import org.apache.struts2.ServletActionContext;
 import orm.entity.UserinfoEntity;
 import response.UserLoginResponseEntity;
 import service.AllDaoService;
+import utils.MD5Utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -38,14 +39,14 @@ public class UserLoginAction extends BaseAction {
     @Override
     public String execute() throws Exception {
         if (StringUtils.isNullOrEmpty(userphone) || StringUtils.isNullOrEmpty(password)) {
-            setCode(1001);
+            setCode(ActionConstant.CODE_ERROR);
             setData("用户名密码不能为空！");
             return ERROR;
         }
         AllDaoService service = new AllDaoService();
         UserinfoEntity userinfo = service.getUserinfoDaoService().findByUserPhone(userphone);
         if (userinfo != null) {
-            if (userinfo.getPassword().equals(password)) {
+            if (userinfo.getPassword().trim().equals(MD5Utils.MD5Encode(password).trim())) {
                 HttpServletResponse response = ServletActionContext.getResponse();
                 Cookie cookie = new Cookie("userid", userinfo.getId() + "");
                 response.addCookie(cookie);
