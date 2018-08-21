@@ -14,6 +14,7 @@
         <action name="loginAction" class="action.userinfo.UserLoginAction"/>
         <action name="updateAction" class="action.userinfo.UserUpdateAction"/>
         <action name="registerAction" class="action.userinfo.UserRegisterAction"/>
+        <action name="getUserinfoAction" class="action.userinfo.UserInfoAction"/>
         <!--account 相关-->
         <action name="saveAccountAction" class="action.account.SaveAccountAction"/>
         <action name="getAccountAction" class="action.account.GetUserAllAccountAction"/>

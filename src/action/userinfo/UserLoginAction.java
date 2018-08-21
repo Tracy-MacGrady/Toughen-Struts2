@@ -11,6 +11,7 @@ import utils.MD5Utils;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.net.CookieManager;
 
 /**
  * Created by Administrator on 2017/8/1 0001.
@@ -48,8 +49,7 @@ public class UserLoginAction extends BaseAction {
         if (userinfo != null) {
             if (userinfo.getPassword().trim().equals(MD5Utils.MD5Encode(password).trim())) {
                 HttpServletResponse response = ServletActionContext.getResponse();
-                Cookie cookie = new Cookie("userid", userinfo.getId() + "");
-                response.addCookie(cookie);
+                response.addCookie(new Cookie("userid", userinfo.getId() + ""));
                 setCode(ActionConstant.CODE_SUCCESS);
                 setData(new UserLoginResponseEntity(userinfo));
                 return SUCCESS;
